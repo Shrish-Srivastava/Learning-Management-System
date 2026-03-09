@@ -54,7 +54,7 @@ Git-safe templates are provided in:
 ## Seeded Admin Login
 
 - Email: `admin@skillup.com`
-- Password: `Admin@123`
+- Password: `*********`
 
 You can change these later in `Backend/.env` and re-seed if needed.
 
