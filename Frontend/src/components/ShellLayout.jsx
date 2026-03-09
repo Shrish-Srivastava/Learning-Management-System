@@ -1,5 +1,6 @@
 import { BookOpen, GraduationCap, LayoutDashboard, LogOut, ShieldCheck } from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { ChatbotWidget } from "./ChatbotWidget";
 import { useAuth } from "../context/useAuth";
 
 function ShellLayout({ children }) {
@@ -72,6 +73,7 @@ function ShellLayout({ children }) {
       </header>
 
       <main className="page-frame">{children}</main>
+      <ChatbotWidget />
 
       <footer className="site-footer glass-panel">
         <div className="footer-brand-block">

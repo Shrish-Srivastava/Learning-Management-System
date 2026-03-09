@@ -907,6 +907,142 @@ button {
   font-weight: 600;
 }
 
+.chatbot-shell {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30;
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+
+.chatbot-toggle {
+  box-shadow: 0 16px 32px rgba(28, 90, 255, 0.28);
+}
+
+.chatbot-panel {
+  width: min(380px, calc(100vw - 32px));
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.chatbot-header,
+.chatbot-title,
+.chatbot-form,
+.chatbot-message.typing {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbot-header {
+  justify-content: space-between;
+}
+
+.chatbot-title {
+  align-items: flex-start;
+}
+
+.chatbot-title strong,
+.chatbot-title span {
+  display: block;
+}
+
+.chatbot-title span {
+  color: #8fa5c8;
+  font-size: 0.8rem;
+}
+
+.chatbot-badge,
+.chatbot-icon-button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #dfe9ff;
+}
+
+.chatbot-icon-button {
+  cursor: pointer;
+}
+
+.chatbot-messages {
+  display: grid;
+  gap: 10px;
+  max-height: 320px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.chatbot-message {
+  max-width: 92%;
+  padding: 12px 14px;
+  border-radius: 18px;
+  line-height: 1.55;
+}
+
+.chatbot-message p {
+  margin: 0;
+}
+
+.chatbot-message.assistant {
+  justify-self: start;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chatbot-message.user {
+  justify-self: end;
+  background: linear-gradient(135deg, rgba(68, 115, 255, 0.92), rgba(66, 213, 255, 0.8));
+  color: white;
+}
+
+.chatbot-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chatbot-prompt {
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #dce7ff;
+}
+
+.chatbot-form {
+  align-items: stretch;
+}
+
+.chatbot-form textarea {
+  flex: 1;
+  border-radius: 16px;
+  padding: 12px 14px;
+  resize: none;
+  min-height: 64px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 1080px) {
   .hero-panel,
   .course-hero,
@@ -980,5 +1116,14 @@ button {
   .hero-actions,
   .course-cta-row {
     flex-wrap: wrap;
+  }
+
+  .chatbot-shell {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .chatbot-form {
+    flex-direction: column;
   }
 }
