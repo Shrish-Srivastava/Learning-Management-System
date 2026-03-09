@@ -66,7 +66,7 @@ button {
 .app-shell {
   position: relative;
   min-height: 100vh;
-  padding: 24px;
+  padding: 18px;
   overflow: hidden;
 }
 
@@ -135,25 +135,37 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 14px;
   padding: 16px 20px;
+  flex-wrap: wrap;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex: 0 0 auto;
+  min-width: 185px;
+}
+
+.brand-copy {
+  min-width: 0;
 }
 
 .brand strong {
   display: block;
   font-size: 1.1rem;
+  white-space: nowrap;
 }
 
-.brand span:last-child {
+.brand-copy span {
   display: block;
   color: #99aac8;
   font-size: 0.82rem;
+  max-width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .brand-badge {
@@ -208,9 +220,24 @@ button {
   color: #ffffff;
 }
 
+.main-nav {
+  flex: 1 1 320px;
+  justify-content: center;
+  min-width: 0;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.header-actions {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
 .page-frame {
-  width: min(1520px, calc(100vw - 28px));
-  margin: 24px auto;
+  width: min(1560px, calc(100vw - 16px));
+  margin: 18px auto;
 }
 
 .page-stack {
@@ -241,7 +268,7 @@ button {
 .video-topbar h1,
 .auth-card h1 {
   margin: 0;
-  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-size: clamp(1.8rem, 4.25vw, 3rem);
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
@@ -252,7 +279,7 @@ button {
 .auth-card p,
 .state-card p {
   color: #9fb1ce;
-  font-size: 1rem;
+  font-size: 0.96rem;
 }
 
 .eyebrow {
@@ -842,7 +869,7 @@ button {
 
 .site-footer {
   margin: 24px auto 0;
-  width: min(1520px, calc(100vw - 28px));
+  width: min(1560px, calc(100vw - 16px));
   padding: 22px 26px;
   color: #8fa5c8;
   display: grid;
@@ -921,7 +948,7 @@ button {
 
 @media (max-width: 760px) {
   .app-shell {
-    padding: 14px;
+    padding: 12px;
   }
 
   .form-grid,
@@ -939,7 +966,7 @@ button {
   .course-hero-content h1,
   .video-topbar h1,
   .auth-card h1 {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .video-frame,

@@ -28,11 +28,10 @@ function HomePage() {
       <section className="hero-panel glass-panel">
         <div className="hero-copy">
           <p className="eyebrow">Structured Learning Platform</p>
-          <h1>Professional online courses designed for clear, structured progress.</h1>
+          <h1>Professional courses built for clear learning progress</h1>
           <p className="hero-text">
-            SkillUp organizes each course into a carefully sequenced learning
-            path with guided lessons, preview access, and a focused dashboard
-            built for consistent progress.
+            SkillUp gives every course a clear structure with guided lessons
+            preview access and a focused learning dashboard.
           </p>
           <div className="hero-actions">
             <Link className="button primary-button" to={user ? "/dashboard" : "/register"}>
@@ -49,17 +48,17 @@ function HomePage() {
           <div className="glass-card floating-card">
             <Sparkles size={18} />
             <strong>Refined interface</strong>
-            <span>Clean layouts, polished card design, and a distraction-free learning experience.</span>
+            <span>Clean layouts polished cards and a focused learning experience</span>
           </div>
           <div className="glass-card floating-card">
             <Video size={18} />
             <strong>Structured video delivery</strong>
-            <span>Lessons are organized into clear sections with a consistent sequence for every course.</span>
+            <span>Lessons are arranged in clear sections with a fixed learning order</span>
           </div>
           <div className="glass-card floating-card">
             <Shield size={18} />
             <strong>Preview-based enrollment</strong>
-            <span>Students can access the first lesson before unlocking the complete course experience.</span>
+            <span>Students can start with the first lesson before unlocking full access</span>
           </div>
         </div>
       </section>
@@ -67,7 +66,7 @@ function HomePage() {
       <section className="section-heading">
         <div>
           <p className="eyebrow">Course Catalogue</p>
-          <h2>Explore curated learning paths across core technical subjects</h2>
+          <h2>Explore curated learning paths across core technical skills</h2>
         </div>
         <span className="glass-chip">Five curated learning tracks</span>
       </section>

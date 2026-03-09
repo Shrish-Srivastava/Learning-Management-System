@@ -21,9 +21,9 @@ function ShellLayout({ children }) {
           <span className="brand-badge">
             <GraduationCap size={18} />
           </span>
-          <div>
+          <div className="brand-copy">
             <strong>{import.meta.env.VITE_APP_NAME}</strong>
-            <span>Structured online learning platform</span>
+            <span>Structured online learning</span>
           </div>
         </Link>
 
@@ -77,8 +77,7 @@ function ShellLayout({ children }) {
         <div className="footer-brand-block">
           <strong>{import.meta.env.VITE_APP_NAME}</strong>
           <p>
-            SkillUp delivers structured online learning with clear course
-            organization, guided lesson flow, and focused student progress.
+            SkillUp helps learners move through clear course paths with guided lessons and focused progress.
           </p>
         </div>
         <div className="footer-grid">
@@ -87,7 +86,7 @@ function ShellLayout({ children }) {
           <span>Structured lesson progression</span>
         </div>
         <div className="footer-note">
-          <span>Designed for consistent, outcome-focused learning.</span>
+          <span>Built for clear learning paths and steady progress</span>
         </div>
       </footer>
     </div>

@@ -50,8 +50,7 @@ function DashboardPage() {
           <p className="eyebrow">Learning Dashboard</p>
           <h1>Welcome back, {user?.name}</h1>
           <p className="hero-text">
-            Review your active courses, monitor progress, and continue from
-            where you left off.
+            Review your active courses track progress and continue from where you stopped.
           </p>
         </div>
 
@@ -71,7 +70,7 @@ function DashboardPage() {
           <div className="glass-card floating-card">
             <Sparkles size={18} />
             <strong>Organized</strong>
-            <span>Structured learning with clear progression</span>
+            <span>Structured learning with a clear path forward</span>
           </div>
         </div>
       </section>

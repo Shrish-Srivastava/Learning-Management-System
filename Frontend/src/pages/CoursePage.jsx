@@ -113,7 +113,7 @@ function CoursePage() {
       <section className="section-heading">
         <div>
           <p className="eyebrow">Curriculum</p>
-          <h2>Course curriculum organized in a clear learning sequence</h2>
+          <h2>Course content arranged in a clear learning sequence</h2>
         </div>
         <span className="glass-chip">
           {isPurchased ? "Full access enabled" : "Preview lesson available"}
