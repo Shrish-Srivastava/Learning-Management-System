@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { api } from "../lib/api";
+import { getApiErrorMessage } from "../lib/getApiErrorMessage";
 
 const emptyCourseForm = {
   title: "",
@@ -46,12 +47,21 @@ function AdminPage() {
   const [lessonForm, setLessonForm] = useState(emptyLessonForm);
   const [lessonEditingId, setLessonEditingId] = useState(null);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const updateError = (text) => {
+    setError(text);
+    window.setTimeout(() => setError(""), 3500);
+  };
 
   const loadCourses = async () => {
     setLoading(true);
     try {
       const { data } = await api.get("/admin/courses");
       setCourses(data.courses);
+      setError("");
+    } catch (requestError) {
+      updateError(getApiErrorMessage(requestError, "Unable to load admin data right now."));
     } finally {
       setLoading(false);
     }
@@ -126,21 +136,26 @@ function AdminPage() {
 
   const updateMessage = (text) => {
     setMessage(text);
+    setError("");
     window.setTimeout(() => setMessage(""), 2500);
   };
 
   const handleCourseSubmit = async (event) => {
     event.preventDefault();
     const payload = { ...courseForm, price: Number(courseForm.price) };
-    if (courseEditingId) {
-      await api.put(`/admin/courses/${courseEditingId}`, payload);
-      updateMessage("Course updated.");
-    } else {
-      await api.post("/admin/courses", payload);
-      updateMessage("Course created.");
+    try {
+      if (courseEditingId) {
+        await api.put(`/admin/courses/${courseEditingId}`, payload);
+        updateMessage("Course updated.");
+      } else {
+        await api.post("/admin/courses", payload);
+        updateMessage("Course created.");
+      }
+      resetCourseForm();
+      await loadCourses();
+    } catch (requestError) {
+      updateError(getApiErrorMessage(requestError, "Unable to save the course."));
     }
-    resetCourseForm();
-    await loadCourses();
   };
 
   const handleSectionSubmit = async (event) => {
@@ -149,15 +164,19 @@ function AdminPage() {
       ...sectionForm,
       orderIndex: Number(sectionForm.orderIndex),
     };
-    if (sectionEditingId) {
-      await api.put(`/admin/sections/${sectionEditingId}`, payload);
-      updateMessage("Section updated.");
-    } else {
-      await api.post("/admin/sections", payload);
-      updateMessage("Section created.");
+    try {
+      if (sectionEditingId) {
+        await api.put(`/admin/sections/${sectionEditingId}`, payload);
+        updateMessage("Section updated.");
+      } else {
+        await api.post("/admin/sections", payload);
+        updateMessage("Section created.");
+      }
+      resetSectionForm();
+      await loadCourses();
+    } catch (requestError) {
+      updateError(getApiErrorMessage(requestError, "Unable to save the section."));
     }
-    resetSectionForm();
-    await loadCourses();
   };
 
   const handleLessonSubmit = async (event) => {
@@ -170,15 +189,19 @@ function AdminPage() {
       playlistIndex: Number(lessonForm.playlistIndex),
     };
 
-    if (lessonEditingId) {
-      await api.put(`/admin/lessons/${lessonEditingId}`, payload);
-      updateMessage("Lesson updated.");
-    } else {
-      await api.post("/admin/lessons", payload);
-      updateMessage("Lesson created.");
+    try {
+      if (lessonEditingId) {
+        await api.put(`/admin/lessons/${lessonEditingId}`, payload);
+        updateMessage("Lesson updated.");
+      } else {
+        await api.post("/admin/lessons", payload);
+        updateMessage("Lesson created.");
+      }
+      resetLessonForm();
+      await loadCourses();
+    } catch (requestError) {
+      updateError(getApiErrorMessage(requestError, "Unable to save the lesson."));
     }
-    resetLessonForm();
-    await loadCourses();
   };
 
   const handleDelete = async (type, id) => {
@@ -187,9 +210,13 @@ function AdminPage() {
       return;
     }
 
-    await api.delete(`/admin/${type}s/${id}`);
-    updateMessage(`${type[0].toUpperCase()}${type.slice(1)} deleted.`);
-    await loadCourses();
+    try {
+      await api.delete(`/admin/${type}s/${id}`);
+      updateMessage(`${type[0].toUpperCase()}${type.slice(1)} deleted.`);
+      await loadCourses();
+    } catch (requestError) {
+      updateError(getApiErrorMessage(requestError, `Unable to delete the ${type}.`));
+    }
   };
 
   return (
@@ -201,6 +228,7 @@ function AdminPage() {
         </div>
         {message && <span className="glass-chip">{message}</span>}
       </section>
+      {error && <div className="form-error">{error}</div>}
 
       <section className="admin-forms-grid">
         <form className="glass-panel admin-form-card" onSubmit={handleCourseSubmit}>

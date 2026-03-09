@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import { getApiErrorMessage } from "../lib/getApiErrorMessage";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function RegisterPage() {
       await register(form);
       navigate("/dashboard", { replace: true });
     } catch (requestError) {
-      setError(requestError.response?.data?.message || "Unable to create your account.");
+      setError(getApiErrorMessage(requestError, "Unable to create your account."));
     } finally {
       setLoading(false);
     }

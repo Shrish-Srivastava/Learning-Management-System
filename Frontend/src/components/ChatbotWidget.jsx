@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 import { api } from "../lib/api";
+import { getApiErrorMessage } from "../lib/getApiErrorMessage";
 
 const starterPrompts = [
   "Which course should I start with",
@@ -60,9 +61,10 @@ function ChatbotWidget() {
         ...current,
         {
           role: "assistant",
-          content:
-            error.response?.data?.message ||
-            "SkillUp AI is unavailable right now. Please try again shortly.",
+          content: getApiErrorMessage(
+            error,
+            "SkillUp AI is unavailable right now. Please try again shortly."
+          ),
         },
       ]);
     } finally {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import { getApiErrorMessage } from "../lib/getApiErrorMessage";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function LoginPage() {
           : location.state?.from || "/dashboard";
       navigate(redirectTo, { replace: true });
     } catch (requestError) {
-      setError(requestError.response?.data?.message || "Unable to sign you in.");
+      setError(getApiErrorMessage(requestError, "Unable to sign you in."));
     } finally {
       setLoading(false);
     }
