@@ -23,7 +23,7 @@ function ShellLayout({ children }) {
           </span>
           <div>
             <strong>{import.meta.env.VITE_APP_NAME}</strong>
-            <span>Structured learning with premium flow</span>
+            <span>Structured online learning platform</span>
           </div>
         </Link>
 
@@ -51,20 +51,20 @@ function ShellLayout({ children }) {
             <>
               <div className="user-badge glass-chip">
                 <span>{user?.name}</span>
-                <small>{user?.role === "ADMIN" ? "Admin" : "Student"}</small>
+                {user?.role === "ADMIN" && <small>Administrator</small>}
               </div>
               <button className="button ghost-button" onClick={handleLogout}>
                 <LogOut size={16} />
-                Logout
+                Sign Out
               </button>
             </>
           ) : (
             <>
               <Link className="button ghost-button" to="/login">
-                Login
+                Sign In
               </Link>
               <Link className="button primary-button" to="/register">
-                Get Started
+                Create Account
               </Link>
             </>
           )}
@@ -74,17 +74,20 @@ function ShellLayout({ children }) {
       <main className="page-frame">{children}</main>
 
       <footer className="site-footer glass-panel">
-        <div>
+        <div className="footer-brand-block">
           <strong>{import.meta.env.VITE_APP_NAME}</strong>
           <p>
-            Learn with premium course pages, structured sections, and a focused
-            student experience.
+            SkillUp delivers structured online learning with clear course
+            organization, guided lesson flow, and focused student progress.
           </p>
         </div>
         <div className="footer-grid">
-          <span>5 curated courses</span>
-          <span>Preview-first purchase flow</span>
-          <span>Admin-controlled content management</span>
+          <span>Curated technical courses</span>
+          <span>Preview-enabled enrolment</span>
+          <span>Structured lesson progression</span>
+        </div>
+        <div className="footer-note">
+          <span>Designed for consistent, outcome-focused learning.</span>
         </div>
       </footer>
     </div>

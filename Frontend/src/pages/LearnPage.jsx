@@ -83,7 +83,7 @@ function LearnPage() {
   };
 
   if (loading) {
-    return <div className="state-card glass-panel">Preparing your lesson workspace...</div>;
+    return <div className="state-card glass-panel">Preparing your lesson view...</div>;
   }
 
   if (!course || !lesson) {
@@ -102,17 +102,16 @@ function LearnPage() {
               <h1>{lesson.title}</h1>
               <p>{lesson.description}</p>
             </div>
-            <span className="glass-chip">Rs. {lesson.price} course</span>
           </div>
 
           {lesson.locked ? (
             <div className="locked-state">
               <Lock size={28} />
-              <h3>Lesson locked</h3>
+              <h3>Lesson access restricted</h3>
               <p>{lesson.lockReason}</p>
               <button className="button primary-button" onClick={handlePurchase} disabled={processing}>
                 <ShoppingBag size={16} />
-                {processing ? "Unlocking..." : "Unlock full course"}
+                {processing ? "Processing access..." : "Unlock full course"}
               </button>
             </div>
           ) : (
@@ -126,6 +125,26 @@ function LearnPage() {
                 />
               </div>
 
+              <div className="lesson-info-grid">
+                <article className="glass-card lesson-info-card">
+                  <p className="eyebrow">Lesson Overview</p>
+                  <h3>{lesson.title}</h3>
+                  <p>
+                    {lesson.description}
+                  </p>
+                </article>
+
+                <article className="glass-card lesson-info-card">
+                  <p className="eyebrow">Learning Outcomes</p>
+                  <h3>What this lesson covers</h3>
+                  <ul className="lesson-outcomes">
+                    <li>Review the primary topic introduced in this lesson.</li>
+                    <li>Build the context required for the next lesson in sequence.</li>
+                    <li>Strengthen your understanding as part of the wider course pathway.</li>
+                  </ul>
+                </article>
+              </div>
+
               <div className="video-actions">
                 <div className="progress-meta">
                   <strong>Course progress: {progress?.percentComplete || 0}%</strong>
@@ -133,7 +152,7 @@ function LearnPage() {
                     <span style={{ width: `${progress?.percentComplete || 0}%` }} />
                   </div>
                   <small>
-                    Complete this lesson manually when you finish watching to unlock the next one.
+                    Mark the lesson as complete after watching to unlock the next step in the course.
                   </small>
                 </div>
 
@@ -146,13 +165,13 @@ function LearnPage() {
                   ) : (
                     <Link className="button ghost-button" to={`/courses/${slug}`}>
                       <ArrowLeft size={16} />
-                      Course Page
+                      Course Overview
                     </Link>
                   )}
 
                   <button className="button primary-button" onClick={handleComplete} disabled={processing || lesson.isCompleted}>
                     <CheckCircle2 size={16} />
-                    {lesson.isCompleted ? "Completed" : processing ? "Saving..." : "Mark Complete"}
+                    {lesson.isCompleted ? "Completed" : processing ? "Saving..." : "Mark as Complete"}
                   </button>
 
                   {lesson.nextLessonId && (

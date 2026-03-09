@@ -21,18 +21,27 @@ function CourseCard({ course, purchased }) {
         <p>{course.description}</p>
 
         <div className="card-stats">
-          <span>
+          <div className="stat-pill">
             <Layers size={15} />
-            {course.sectionCount} sections
-          </span>
-          <span>
+            <div>
+              <strong>{course.sectionCount}</strong>
+              <span>Sections</span>
+            </div>
+          </div>
+          <div className="stat-pill">
             <PlayCircle size={15} />
-            {course.lessonCount} lessons
-          </span>
-          <span>
+            <div>
+              <strong>{course.lessonCount}</strong>
+              <span>Lessons</span>
+            </div>
+          </div>
+          <div className="stat-pill">
             <Star size={15} />
-            {course.duration}
-          </span>
+            <div>
+              <strong>Preview</strong>
+              <span>Lesson 1</span>
+            </div>
+          </div>
         </div>
 
         <div className="card-actions">

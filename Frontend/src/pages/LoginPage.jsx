@@ -23,7 +23,7 @@ function LoginPage() {
           : location.state?.from || "/dashboard";
       navigate(redirectTo, { replace: true });
     } catch (requestError) {
-      setError(requestError.response?.data?.message || "Login failed.");
+      setError(requestError.response?.data?.message || "Unable to sign you in.");
     } finally {
       setLoading(false);
     }
@@ -32,9 +32,9 @@ function LoginPage() {
   return (
     <section className="auth-shell">
       <div className="glass-panel auth-card">
-        <p className="eyebrow">Welcome back</p>
-        <h1>Login to SkillUp</h1>
-        <p>Use student or admin credentials to continue your learning workflow.</p>
+        <p className="eyebrow">Sign In</p>
+        <h1>Access your SkillUp account</h1>
+        <p>Sign in to continue learning or manage course content from the admin workspace.</p>
 
         <form className="form-grid" onSubmit={handleSubmit}>
           <label>
@@ -62,12 +62,12 @@ function LoginPage() {
           {error && <div className="form-error">{error}</div>}
 
           <button className="button primary-button full-width" type="submit" disabled={loading}>
-            {loading ? "Signing in..." : "Login"}
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
 
         <p className="auth-footer-text">
-          New student? <Link to="/register">Create an account</Link>
+          New to SkillUp? <Link to="/register">Create an account</Link>
         </p>
       </div>
     </section>

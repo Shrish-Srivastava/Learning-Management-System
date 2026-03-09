@@ -18,7 +18,7 @@ function RegisterPage() {
       await register(form);
       navigate("/dashboard", { replace: true });
     } catch (requestError) {
-      setError(requestError.response?.data?.message || "Registration failed.");
+      setError(requestError.response?.data?.message || "Unable to create your account.");
     } finally {
       setLoading(false);
     }
@@ -27,9 +27,9 @@ function RegisterPage() {
   return (
     <section className="auth-shell">
       <div className="glass-panel auth-card">
-        <p className="eyebrow">Create your account</p>
-        <h1>Start learning on SkillUp</h1>
-        <p>Sign up as a student and unlock structured, premium course delivery.</p>
+        <p className="eyebrow">Create Account</p>
+        <h1>Begin your learning journey with SkillUp</h1>
+        <p>Create a student account to access structured courses and track your progress.</p>
 
         <form className="form-grid" onSubmit={handleSubmit}>
           <label>
@@ -60,7 +60,7 @@ function RegisterPage() {
               type="password"
               value={form.password}
               onChange={(event) => setForm((current) => ({ ...current, password: event.target.value }))}
-              placeholder="Minimum 6 characters"
+              placeholder="At least 6 characters"
               required
             />
           </label>
@@ -68,12 +68,12 @@ function RegisterPage() {
           {error && <div className="form-error">{error}</div>}
 
           <button className="button primary-button full-width" type="submit" disabled={loading}>
-            {loading ? "Creating account..." : "Create account"}
+            {loading ? "Creating account..." : "Create Account"}
           </button>
         </form>
 
         <p className="auth-footer-text">
-          Already have an account? <Link to="/login">Login</Link>
+          Already have an account? <Link to="/login">Sign in</Link>
         </p>
       </div>
     </section>

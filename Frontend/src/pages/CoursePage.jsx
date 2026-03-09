@@ -53,7 +53,7 @@ function CoursePage() {
   };
 
   if (loading) {
-    return <div className="state-card glass-panel">Loading course details...</div>;
+    return <div className="state-card glass-panel">Loading course overview...</div>;
   }
 
   if (!course) {
@@ -62,7 +62,7 @@ function CoursePage() {
 
   return (
     <div className="page-stack">
-      <section className="course-hero glass-panel">
+      <section className="course-hero glass-panel course-hero-expanded">
         <img src={course.thumbnail} alt={course.title} className="course-hero-image" />
 
         <div className="course-hero-content">
@@ -70,22 +70,22 @@ function CoursePage() {
           <h1>{course.title}</h1>
           <p className="hero-text">{course.description}</p>
 
-          <div className="course-summary-grid">
-            <div className="glass-card">
+          <div className="course-summary-grid stats-gap-grid">
+            <div className="glass-card summary-card">
               <strong>{course.sectionCount}</strong>
               <span>Sections</span>
             </div>
-            <div className="glass-card">
+            <div className="glass-card summary-card">
               <strong>{course.lessonCount}</strong>
               <span>Lessons</span>
             </div>
-            <div className="glass-card">
+            <div className="glass-card summary-card">
               <strong>{course.level}</strong>
               <span>Level</span>
             </div>
-            <div className="glass-card">
+            <div className="glass-card summary-card">
               <strong>Rs. {course.price}</strong>
-              <span>One-time unlock</span>
+              <span>Full course access</span>
             </div>
           </div>
 
@@ -93,17 +93,17 @@ function CoursePage() {
             {previewLesson && (
               <Link className="button ghost-button" to={`/learn/${course.slug}/${previewLesson.id}`}>
                 <PlayCircle size={16} />
-                Watch Free Lesson
+                Preview First Lesson
               </Link>
             )}
             {isPurchased ? (
               <Link className="button primary-button" to={`/learn/${course.slug}/${previewLesson?.id}`}>
-                Continue Course
+                Continue Learning
               </Link>
             ) : (
               <button className="button primary-button" onClick={handlePurchase} disabled={buying}>
                 <ShoppingBag size={16} />
-                {buying ? "Unlocking..." : `Unlock Full Course for Rs. ${course.price}`}
+                {buying ? "Processing access..." : `Unlock Full Course for Rs. ${course.price}`}
               </button>
             )}
           </div>
@@ -113,10 +113,10 @@ function CoursePage() {
       <section className="section-heading">
         <div>
           <p className="eyebrow">Curriculum</p>
-          <h2>Professional section structure shown exactly as students will see it</h2>
+          <h2>Course curriculum organized in a clear learning sequence</h2>
         </div>
         <span className="glass-chip">
-          {isPurchased ? "Purchased" : "First lesson free"}
+          {isPurchased ? "Full access enabled" : "Preview lesson available"}
         </span>
       </section>
 

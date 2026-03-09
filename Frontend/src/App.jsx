@@ -7,6 +7,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { HomePage } from "./pages/HomePage";
 import { LearnPage } from "./pages/LearnPage";
 import { LoginPage } from "./pages/LoginPage";
+import { PurchasedCoursesPage } from "./pages/PurchasedCoursesPage";
 import { RegisterPage } from "./pages/RegisterPage";
 
 function App() {
@@ -22,6 +23,14 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/purchased"
+          element={
+            <ProtectedRoute>
+              <PurchasedCoursesPage />
             </ProtectedRoute>
           }
         />

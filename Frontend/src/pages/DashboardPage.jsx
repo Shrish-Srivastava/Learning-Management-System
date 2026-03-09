@@ -47,35 +47,37 @@ function DashboardPage() {
     <div className="page-stack">
       <section className="hero-panel glass-panel compact-hero">
         <div className="hero-copy">
-          <p className="eyebrow">My learning hub</p>
+          <p className="eyebrow">Learning Dashboard</p>
           <h1>Welcome back, {user?.name}</h1>
           <p className="hero-text">
-            Track purchased courses, jump back into your last lesson, and keep
-            the learning flow moving.
+            Review your active courses, monitor progress, and continue from
+            where you left off.
           </p>
         </div>
 
         <div className="hero-stats-grid slim-grid">
-          <div className="glass-card floating-card">
+          <Link className="glass-card floating-card interactive-stat-card" to="/dashboard/purchased">
             <BookOpenCheck size={18} />
             <strong>{purchasedCourses.length}</strong>
             <span>Purchased courses</span>
-          </div>
-          <div className="glass-card floating-card">
+            <small>Open your course library</small>
+          </Link>
+          <Link className="glass-card floating-card interactive-stat-card" to="/">
             <CirclePlay size={18} />
             <strong>{courses.length}</strong>
-            <span>Available tracks</span>
-          </div>
+            <span>Courses available</span>
+            <small>Browse the full catalogue</small>
+          </Link>
           <div className="glass-card floating-card">
             <Sparkles size={18} />
-            <strong>Premium</strong>
-            <span>Focused learning experience</span>
+            <strong>Organized</strong>
+            <span>Structured learning with clear progression</span>
           </div>
         </div>
       </section>
 
       {loading ? (
-        <div className="state-card glass-panel">Loading your courses...</div>
+        <div className="state-card glass-panel">Loading your learning dashboard...</div>
       ) : purchasedCourses.length > 0 ? (
         <section className="dashboard-grid">
           {purchasedCourses.map((course) => (
@@ -92,7 +94,7 @@ function DashboardPage() {
                 </p>
                 <div className="card-actions">
                   <Link className="button primary-button" to={`/courses/${course.slug}`}>
-                    Continue Course
+                    Open Course
                   </Link>
                 </div>
               </div>
@@ -101,13 +103,13 @@ function DashboardPage() {
         </section>
       ) : (
         <div className="state-card glass-panel">
-          <h3>No purchased courses yet</h3>
+          <h3>No courses unlocked yet</h3>
           <p>
-            Browse the catalog, preview the first lesson for free, and unlock a
-            course when you are ready.
+            Browse the catalogue, preview the first lesson, and unlock a course
+            when you are ready to continue.
           </p>
           <Link className="button primary-button" to="/">
-            Explore courses
+            Browse Catalogue
           </Link>
         </div>
       )}
